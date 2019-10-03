@@ -6,7 +6,7 @@ public class SingleLinkedList
 
     public SingleLinkedList()
     {
-	head = null;
+	head = null; // set the head and the traversing pointer to null
 	currPtr = null;
     } 
 
@@ -14,32 +14,32 @@ public class SingleLinkedList
     {
 	if (head == null)
 	    {
-		head = le;
+		head = le; // the element parameter becomes the head if there are no elements in the list
 	    }
 
 	else
 	    {
-		currPtr = head;
-		head = le;
-		head.setNext(currPtr);
+		currPtr = head; // the traversal pointer points to the existing head
+		head = le; // the element parameter becomes the new head
+		head.setNext(currPtr); // the old head is linked to the new head
 	    }
     }
 
     public void deleteElement(int index)
     {
-	if (head == null)
+	if (head == null) // if there are no elements in the list
 	    System.out.println("No elements to delete!");
 
 	else
 	    {
-	        currPtr = head;
+	        currPtr = head; // traversal pointer points to the front of the list
 
 		while (currPtr.getNext() != null && currPtr.getNext().getData() != index)
-		    currPtr = currPtr.getNext();
+		    currPtr = currPtr.getNext(); // traverse the list until the desired data value is found or the end of the list is reached
 		
-		if (currPtr.getNext().getData() == index)
+		if (currPtr.getNext().getData() == index) // if the desired data value is found
 		    {
-			currPtr.setNext(currPtr.getNext().getNext());
+			currPtr.setNext(currPtr.getNext().getNext()); // the node with the desired data value is bypassed
 		    }
 	    }
     }
@@ -47,38 +47,38 @@ public class SingleLinkedList
     public ListElement getElement(int index)
     {
 	ListElement dummy = new ListElement();
-	dummy.setData(9999);
+	dummy.setData(9999); // dummy value in case the desired data value is not found
 
 	if (head == null)
-	    return dummy;
+	    return dummy; // return the dummy value if there are no elements in the list
 
 	else
 	    {
-	        currPtr = head;
+	        currPtr = head; // traversal pointer points to the front of the list
 
 	        while (currPtr.getNext() != null && currPtr.getData() != index)
-		    currPtr = (currPtr.getNext());
+		    currPtr = (currPtr.getNext()); // traverse the list until the end is reached or the desired data value is found
 		
 		if (currPtr.getData() == index)
-		    return currPtr;
+		    return currPtr; // return the pointer with the data element if the data element is found in the list
 
-		else return dummy;
+		else return dummy; // return the dummy value if the end of the list is reached
 	    }
     }
 
     public void printLinkedListHead()
     {
-	if (head == null)
+	if (head == null) // if there are no elements in the list
 	    System.out.println("No elements to print!");
 	
 	else
 	    {
-		currPtr = head;
+		currPtr = head; // traversal pointer points to the beginning of the list
 
 		while (currPtr != null)
 		    {
 			System.out.print(currPtr.getData() + " ");
-			currPtr = (currPtr.getNext());
+			currPtr = (currPtr.getNext()); // traverse the list and output the data elements sequentially until the end of the list is reached
 		    }
 		System.out.println(" ");
 	    }
