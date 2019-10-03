@@ -32,4 +32,14 @@ public class ListElement
     {
 	return this.next;
     }
+    
+    public void setPrevious(ListElement le) // two new functions added for the doubly linked list
+    {
+	this.previous = le;    
+    }
+
+    public ListElement getPrevious() // since the 'previous' attribute is private, it must be accessed through a setter and a getter 
+    {
+	return this.previous;
+    }
 }
