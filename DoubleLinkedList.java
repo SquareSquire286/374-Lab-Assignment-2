@@ -6,7 +6,7 @@ public class DoubleLinkedList
 
     public DoubleLinkedList()
     {
-	head = null;
+	head = null; // set head and tail to null
 	tail = null;
     } 
 
@@ -14,46 +14,46 @@ public class DoubleLinkedList
     {
 	if (head == null)
 	    {
-		head = le;
+		head = le; // if head is null, the element parameter becomes the head
 	    }
 
 	if (tail == null)
 	    {
-		tail = le;
+		tail = le; // if tail is null, the element paramenter becomes the tail
 	    }
 
-	else if (head == tail)
+	else if (head == tail) // this would mean that there is only one element in the list
 	    {
-		currPtr = head;
-		head = le;
-		head.setNext(currPtr);
-		tail.setPrevious(head);
+		currPtr = head; // assign the value of the head to the traversing pointer
+		head = le; // the element parameter becomes the new head
+		head.setNext(currPtr); // head is linked to the traversing pointer (the old head)
+		tail.setPrevious(head); // the new head is linked to the tail (which is also the old head)
 	    }
 
-	else
+	else // if there are two or more elements in the list
 	    {
-		currPtr = head;
-		head = le;
-		head.setNext(currPtr);
-		head.getNext().setPrevious(head);
+		currPtr = head; // point the traversing pointer to the head
+		head = le; // the element parameter becomes the new head
+		head.setNext(currPtr); // the new head is linked to the old head
+		head.getNext().setPrevious(head); // the old head is linked to the new head to ensure that the list is doubly linked
 	    }
     }
 
     public void deleteElement(int index)
     {
-	if (head == null && tail == null)
+	if (head == null && tail == null) // if the list is empty
 	    System.out.println("No elements to delete!");
 
 	else
 	    {
-	        currPtr = tail;
+	        currPtr = tail; // the traversing pointer points to the tail
 
 		while (currPtr != head && currPtr.getPrevious().getData() != index)
-		    currPtr = currPtr.getPrevious();
+		    currPtr = currPtr.getPrevious(); // traverse the list backwards until the head is reached or the desired index value is found
 		
-		if (currPtr.getPrevious().getData() == index)
+		if (currPtr.getPrevious().getData() == index) // if the desired index value is found
 		    {
-			currPtr.getPrevious().getPrevious().setNext(currPtr);
+			currPtr.getPrevious().getPrevious().setNext(currPtr); // skip over the node with the desired data value
 			currPtr.setPrevious(currPtr.getPrevious().getPrevious());
 		    }
 	    }
@@ -61,39 +61,39 @@ public class DoubleLinkedList
 
     public ListElement getElement(int index)
     {
-	ListElement dummy = new ListElement();
+	ListElement dummy = new ListElement(); // dummy value in the event that the desired index is not in the list
 	dummy.setData(9999);
 
 	if (head == null && tail == null)
-	    return dummy;
+	    return dummy; // return the dummy value if the list is empty
 
 	else
 	    {
 	        currPtr = head;
 
 	        while (currPtr != tail && currPtr.getData() != index)
-		    currPtr = (currPtr.getNext());
+		    currPtr = (currPtr.getNext()); // traverse the list until we reach the tail or the desired index value
 		
 		if (currPtr.getData() == index)
-		    return currPtr;
+		    return currPtr; // return the pointer with the desired index value if it is found
 
-		else return dummy;
+		else return dummy; // return the dummy value if the desired index value is not found
 	    }
     }
 
     public void printLinkedListHead()
     {
-	if (head == null)
+	if (head == null) // if there are no elements in the list
 	    System.out.println("No elements to print!");
 	
 	else
 	    {
-		currPtr = head;
+		currPtr = head; // traversing pointer points to the beginning of the list
 
 		while (currPtr != null)
 		    {
 			System.out.print(currPtr.getData() + " ");
-			currPtr = (currPtr.getNext());
+			currPtr = (currPtr.getNext()); // print elements sequentially until the end of the list is reached
 		    }
 		System.out.println(" ");
 	    }
@@ -101,17 +101,17 @@ public class DoubleLinkedList
 
     public void printLinkedListTail()
     {
-	if (tail == null)
+	if (tail == null) // if there are no elements in the list
 	    System.out.println("No elements to print!");
 
 	else
 	    {
-		currPtr = tail;
+		currPtr = tail; // traversing pointer points to the back of the list
 
 		while (currPtr != null)
 		    {
 			System.out.print(currPtr.getData() + " ");
-			currPtr = currPtr.getPrevious();
+			currPtr = currPtr.getPrevious(); // prints elements sequentially until the beginning of the list is reached
 		    }
 		System.out.println(" ");
 	    }
