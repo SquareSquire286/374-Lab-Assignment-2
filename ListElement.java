@@ -40,6 +40,6 @@ public class ListElement
 
     public ListElement getPrevious() // since the 'previous' attribute is private, it must be accessed through a setter and a getter 
     {
-	return this.previous;
+	return this.previous; // otherwise, this file is the same as in the master branch
     }
 }
